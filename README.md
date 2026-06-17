@@ -1,4 +1,4 @@
-# 🍽️ FoodLink - Fighting Hunger, Reducing Waste
+no# 🍽️ FoodLink - Fighting Hunger, Reducing Waste
 
 ![Mission](https://img.shields.io/badge/Mission-Fight%20Hunger-red)
 ![Status](https://img.shields.io/badge/Status-Active-success)
@@ -337,9 +337,9 @@ Example: If username is `mercy-beryl`, URL is:
 ### Support & Help:
 - Email: hellofoodlink254@gmail.com
 - Phone: +254795396277
-- WhatsApp: Message us
+- WhatsApp: +254795396277
 - Facebook: @FoodLinkCommunity
-- Twitter: @FoodLinkApp
+- x: @FoodLinkApp
 
 ---
 
@@ -445,7 +445,7 @@ Questions? Want to partner with us? Need help?
 
 - 📧 Email: hellofoodlink254@gmail.com
 - 📱 WhatsApp: +254795396277
-- 🌐 Website:[]
+- 🌐 Website:[https://mer-c-y.github.io/Food-link/]
 - 💬 Chat: Use the contact form below
 
 ---
