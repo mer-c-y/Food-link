@@ -45,17 +45,23 @@ const providers = [
 // ==================== DISPLAY PROVIDER CARDS ====================
 function displayProviders() {
     const providersList = document.getElementById('providersList');
+
+    if (!providersList) return;
+
     providersList.innerHTML = '';
-    
+
     providers.forEach((provider, index) => {
         const providerCard = document.createElement('div');
+
         providerCard.className = 'provider-card';
         providerCard.style.animationDelay = `${index * 0.1}s`;
+
         providerCard.innerHTML = `
             <div class="provider-icon">${provider.emoji}</div>
             <h3>${provider.name}</h3>
             <p>${provider.description}</p>
         `;
+
         providersList.appendChild(providerCard);
     });
 }
@@ -63,14 +69,16 @@ function displayProviders() {
 // ==================== ANIMATE STATISTICS NUMBERS ====================
 function animateNumbers() {
     const numbers = document.querySelectorAll('.stat-number');
-    
+
     numbers.forEach(element => {
         const target = parseInt(element.getAttribute('data-target'));
         let current = 0;
+
         const increment = target / 50;
-        
+
         const counter = setInterval(() => {
             current += increment;
+
             if (current >= target) {
                 element.textContent = target;
                 clearInterval(counter);
@@ -82,63 +90,72 @@ function animateNumbers() {
 }
 
 // ==================== SMOOTH SCROLL FUNCTION ====================
-    function scrollTo(sectionId) {
+function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
+
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
 }
 
 // ==================== HANDLE CONTACT FORM SUBMISSION ====================
 function handleSubmit(event) {
     event.preventDefault();
-    
-    const name = event.target.querySelector('#name').value;
-    const email = event.target.querySelector('#email').value;
-    const subject = event.target.querySelector('#subject').value;
-    const message = event.target.querySelector('#message').value;
-    
-    // Show success message
-    alert(`Thank you ${name}! We received your message about "${subject}". We'll get back to you at ${email} soon. Together, we're fighting hunger! 🍽️❤️`);
-    
-    // Reset form
-    event.target.reset();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+
+    alert(
+        `Thank you ${name}! We received your message about "${subject}". We will get back to you at ${email} soon. Together, we're fighting hunger! 🍽️❤️`
+    );
+
+    document.getElementById('contactForm').reset();
 }
 
 // ==================== INITIALIZE PAGE ====================
-document.addEventListener('DOMContentLoaded', function() {
-    // Display all provider cards
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Display provider cards
     displayProviders();
-    
-    // Animate numbers when page loads
+
+    // Animate statistics
     setTimeout(animateNumbers, 500);
-    
-    // Add scroll animation for elements
+
+    // Scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = 'slideUp 0.8s ease forwards';
+                entry.target.style.animation =
+                    'slideUp 0.8s ease forwards';
             }
         });
     }, observerOptions);
-    
-    // Observe all sections
+
     document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
     });
 });
 
-// ==================== SMOOTH PAGE TRANSITIONS ====================
-window.addEventListener('scroll', function() {
+// ==================== NAVBAR SHADOW EFFECT ====================
+window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
+
+    if (!navbar) return;
+
     if (window.scrollY > 100) {
-        navbar.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+        navbar.style.boxShadow =
+            '0 8px 16px rgba(0,0,0,0.2)';
     } else {
-        navbar.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        navbar.style.boxShadow =
+            '0 4px 6px rgba(0,0,0,0.1)';
     }
 });
