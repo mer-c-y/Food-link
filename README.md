@@ -335,8 +335,8 @@ Example: If username is `mercy-beryl`, URL is:
 - [Local Health Department Resources](https://www.cdc.gov)
 
 ### Support & Help:
-- Email: hello@foodlink.com
-- Phone: 1-800-FOODLINK
+- Email: hellofoodlink254@gmail.com
+- Phone: +254795396277
 - WhatsApp: Message us
 - Facebook: @FoodLinkCommunity
 - Twitter: @FoodLinkApp
