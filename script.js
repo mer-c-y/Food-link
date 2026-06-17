@@ -82,7 +82,8 @@ function animateNumbers() {
 }
 
 // ==================== SMOOTH SCROLL FUNCTION ====================
-function scrollTo(sectionId) {
+fu<script src="script.js"></script>
+    nction scrollTo(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
