@@ -1,4 +1,5 @@
 // ==================== FOOD PROVIDER CATEGORIES ====================
+
 const providers = [
     {
         name: "Restaurants & Hotels",
@@ -6,156 +7,163 @@ const providers = [
         description: "Daily unsold meals and catering leftovers"
     },
     {
-        name: "Supermarkets & Grocery",
+        name: "Supermarkets & Grocery Stores",
         emoji: "🛒",
-        description: "Cosmetically perfect but unsold food items"
+        description: "Perfectly good food that cannot be sold"
     },
     {
-        name: "Bakeries & Pastries",
+        name: "Bakeries",
         emoji: "🍞",
-        description: "End-of-day fresh but unsold baked goods"
+        description: "Fresh baked goods available at the end of the day"
     },
     {
         name: "Events & Catering",
         emoji: "🎪",
-        description: "Excess catering from events and functions"
+        description: "Excess food from weddings, parties, and events"
     },
     {
         name: "Food Factories",
         emoji: "🏭",
-        description: "Overproduction and processing byproducts"
+        description: "Surplus food products and ingredients"
     },
     {
         name: "Home Cooks",
         emoji: "🏠",
-        description: "Homemade food and prepared meals"
+        description: "Food shared by generous community members"
     },
     {
-        name: "Food Courts & Malls",
+        name: "Shopping Malls",
         emoji: "🏬",
-        description: "Restaurant waste from busy commercial areas"
+        description: "Food court and restaurant donations"
     },
     {
         name: "Corporate Cafeterias",
         emoji: "🍱",
-        description: "Leftover meals from office cafeterias"
+        description: "Meals shared from workplace cafeterias"
     }
 ];
 
-// ==================== DISPLAY PROVIDER CARDS ====================
+// ==================== DISPLAY PROVIDERS ====================
+
 function displayProviders() {
-    const providersList = document.getElementById('providersList');
+
+    const providersList = document.getElementById("providersList");
 
     if (!providersList) return;
 
-    providersList.innerHTML = '';
+    providersList.innerHTML = "";
 
-    providers.forEach((provider, index) => {
-        const providerCard = document.createElement('div');
+    providers.forEach(provider => {
 
-        providerCard.className = 'provider-card';
-        providerCard.style.animationDelay = `${index * 0.1}s`;
+        const card = document.createElement("div");
 
-        providerCard.innerHTML = `
+        card.className = "provider-card";
+
+        card.innerHTML = `
             <div class="provider-icon">${provider.emoji}</div>
             <h3>${provider.name}</h3>
             <p>${provider.description}</p>
         `;
 
-        providersList.appendChild(providerCard);
+        providersList.appendChild(card);
     });
 }
 
-// ==================== ANIMATE STATISTICS NUMBERS ====================
-function animateNumbers() {
-    const numbers = document.querySelectorAll('.stat-number');
+// ==================== ANIMATE NUMBERS ====================
 
-    numbers.forEach(element => {
-        const target = parseInt(element.getAttribute('data-target'));
+function animateNumbers() {
+
+    const counters = document.querySelectorAll(".stat-number");
+
+    counters.forEach(counter => {
+
+        const target = Number(counter.dataset.target);
+
         let current = 0;
 
         const increment = target / 50;
 
-        const counter = setInterval(() => {
+        const timer = setInterval(() => {
+
             current += increment;
 
             if (current >= target) {
-                element.textContent = target;
-                clearInterval(counter);
+
+                counter.textContent = target;
+
+                clearInterval(timer);
+
             } else {
-                element.textContent = Math.floor(current);
+
+                counter.textContent = Math.floor(current);
             }
-        }, 20);
+
+        }, 30);
     });
 }
 
-// ==================== SMOOTH SCROLL FUNCTION ====================
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
+// ==================== SMOOTH SCROLL ====================
 
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+function scrollTo(sectionId) {
+
+    const section = document.getElementById(sectionId);
+
+    if (!section) {
+        console.error("Section not found:", sectionId);
+        return;
     }
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 
-// ==================== HANDLE CONTACT FORM SUBMISSION ====================
+// Make function available globally
+window.scrollTo = scrollTo;
+
+// ==================== CONTACT FORM ====================
+
 function handleSubmit(event) {
+
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-
     alert(
-        `Thank you ${name}! We received your message about "${subject}". We will get back to you at ${email} soon. Together, we're fighting hunger! 🍽️❤️`
+        "Thank you for contacting FoodLink! We have received your message and will get back to you soon. ❤️"
     );
 
-    document.getElementById('contactForm').reset();
+    event.target.reset();
 }
 
-// ==================== INITIALIZE PAGE ====================
-document.addEventListener('DOMContentLoaded', () => {
+window.handleSubmit = handleSubmit;
 
-    // Display provider cards
-    displayProviders();
+// ==================== NAVBAR SHADOW ====================
 
-    // Animate statistics
-    setTimeout(animateNumbers, 500);
+window.addEventListener("scroll", () => {
 
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation =
-                    'slideUp 0.8s ease forwards';
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-    });
-});
-
-// ==================== NAVBAR SHADOW EFFECT ====================
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector(".navbar");
 
     if (!navbar) return;
 
-    if (window.scrollY > 100) {
+    if (window.scrollY > 50) {
+
         navbar.style.boxShadow =
-            '0 8px 16px rgba(0,0,0,0.2)';
+            "0 4px 15px rgba(0,0,0,0.2)";
+
     } else {
-        navbar.style.boxShadow =
-            '0 4px 6px rgba(0,0,0,0.1)';
+
+        navbar.style.boxShadow = "none";
     }
+});
+
+// ==================== PAGE LOAD ====================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    displayProviders();
+
+    setTimeout(() => {
+        animateNumbers();
+    }, 500);
+
 });
